@@ -321,13 +321,13 @@ func (streamConfig *streamConfig) StdinPipe() io.WriteCloser {
 func (streamConfig *streamConfig) StdoutPipe() io.ReadCloser {
 	reader, writer := io.Pipe()
 	streamConfig.stdout.AddWriter(writer)
-	return ioutils.NewBufReader(reader)
+	return reader
 }
 
 func (streamConfig *streamConfig) StderrPipe() io.ReadCloser {
 	reader, writer := io.Pipe()
 	streamConfig.stderr.AddWriter(writer)
-	return ioutils.NewBufReader(reader)
+	return reader
 }
 
 func (container *Container) isNetworkAllocated() bool {
